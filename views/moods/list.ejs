@@ -1,0 +1,26 @@
+<h1 class="section-title">Mood Board:</h1>
+
+<a href="/moods/add" class="add-entry-btn">
+  <span>+</span> Add Entry
+</a>
+
+<% moods.forEach(m => { %>
+  <div class="entry-card">
+    <div class="entry-grid">
+      
+      <!-- Mood Bubble -->
+      <div class="mood <%= m.emotion.toLowerCase() %>"></div>
+
+      <!-- Right Column -->
+      <div>
+        <div class="entry-date">
+          <%= new Date(m.date).toLocaleDateString("en-US", {
+            year: "numeric", month: "long", day: "numeric"
+          }) %>
+        </div>
+
+        <p><%= m.journalText %></p>
+      </div>
+    </div>
+  </div>
+<% }) %>

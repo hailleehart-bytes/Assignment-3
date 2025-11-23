@@ -1,0 +1,115 @@
+/* ---- GLOBAL ---- */
+body {
+  background: #f8e1ff !important;
+  font-family: "Georgia", serif;
+  color: #142a5c;
+  padding-bottom: 60px;
+}
+
+h1, h2, h3 {
+  font-family: "Georgia", serif;
+  color: #142a5c;
+}
+
+.section-title {
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* ---- MAIN CARD ---- */
+.pink-card {
+  background: #f7d3ff;
+  padding: 35px;
+  border-radius: 30px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* ---- SUBTITLES ---- */
+.subtitle {
+  font-size: 22px;
+  color: #76c8c2;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* ---- INPUT BOXES ---- */
+.dark-box, .dark-textarea {
+  background: #0c2d73 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 22px !important;
+  padding: 16px !important;
+  width: 100%;
+  font-size: 16px;
+}
+
+.dark-textarea {
+  resize: none;
+  height: 115px;
+}
+
+/* ---- MOOD BUBBLES ---- */
+.mood-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.mood {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+  box-shadow: 0px 0px 12px rgba(0,0,0,0.2);
+}
+
+.mood.selected {
+  border: 3px solid #7ff1e6;
+}
+
+/* Mood Gradients */
+.mood.happy    { background: radial-gradient(circle at 30% 30%, yellow, orange); }
+.mood.sad      { background: radial-gradient(circle at 30% 30%, #8dd0ff, #2a4bff); }
+.mood.angry    { background: radial-gradient(circle at 30% 30%, #ffae00, red); }
+.mood.stress   { background: radial-gradient(circle at 30% 30%, #e2ffac, #ff7b7b); }
+.mood.confused { background: radial-gradient(circle at 30% 30%, pink, teal); }
+
+/* ---- ENTRY LIST ---- */
+.entry-card {
+  background: #f7d3ff;
+  padding: 25px;
+  border-radius: 25px;
+  margin-top: 20px;
+}
+
+.entry-grid {
+  display: grid;
+  grid-template-columns: 100px auto;
+  gap: 30px;
+  border-top: 2px dotted #142a5c;
+  padding-top: 20px;
+}
+
+.entry-date {
+  font-weight: bold;
+  color: #142a5c;
+  text-decoration: underline;
+  margin-bottom: 8px;
+}
+
+/* Add Entry button */
+.add-entry-btn {
+  font-size: 32px;
+  color: #142a5c;
+  margin: 30px 0 15px;
+  cursor: pointer;
+}
+
+.add-entry-btn span {
+  font-weight: bold;
+  font-size: 40px;
+  margin-right: 10px;
+}

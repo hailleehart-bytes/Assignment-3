@@ -1,0 +1,17 @@
+<h2>Delete Entry</h2>
+
+<div class="alert alert-warning">Are you sure you want to delete this entry?</div>
+
+<div class="card mb-3">
+  <div class="card-body">
+    <h5><%= entry.emotion %> — <%= entry.moodScore %>/5</h5>
+    <p><%= entry.journalText %></p>
+    <small class="text-muted"><%= new Date(entry.date).toLocaleString() %></small>
+  </div>
+</div>
+
+<form action="/moods/delete/<%= entry._id %>?_method=DELETE" method="post">
+  <button class="btn btn-danger">Yes, Delete</button>
+  <a href="/dashboard" class="btn btn-secondary">Cancel</a>
+</form>
+

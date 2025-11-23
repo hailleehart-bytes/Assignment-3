@@ -1,0 +1,24 @@
+<div class="py-4 text-center">
+  <h1>Public Mood Log</h1>
+  <p class="lead">Recent public mood entries</p>
+</div>
+
+<div class="row">
+  <% if (!entries || entries.length === 0) { %>
+    <div class="col-12"><p>No entries yet.</p></div>
+  <% } %>
+
+  <% entries.forEach(entry => { %>
+    <div class="col-md-4 mb-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5><%= entry.emotion %> — <%= entry.moodScore %>/5</h5>
+          <p><%= entry.journalText ? entry.journalText.substring(0,120) : '' %></p>
+        </div>
+        <div class="card-footer text-muted">
+          <%= new Date(entry.date).toLocaleDateString() %>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>

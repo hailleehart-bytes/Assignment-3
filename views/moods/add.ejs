@@ -1,43 +1,18 @@
-<div class="pink-card">
-  <h1 class="section-title">New Mood Entry</h1>
+<h2>Add New Mood Entry</h2>
 
-  <form action="/moods/add" method="POST">
+<form action="/moods/add" method="POST" class="card">
 
-    <!-- Mood Select -->
-    <p class="subtitle">CHOOSE YOUR MOOD</p>
+    <label>Select Mood:</label>
+    <select name="mood" required>
+        <option value="confused">Confused</option>
+        <option value="happy">Happy</option>
+        <option value="stressed">Stressed</option>
+        <option value="angry">Angry</option>
+        <option value="sad">Sad</option>
+    </select>
 
-    <div class="mood-row">
-      <div class="mood happy" data-mood="Happy"></div>
-      <div class="mood angry" data-mood="Angry"></div>
-      <div class="mood stress" data-mood="Stressed"></div>
-      <div class="mood confused" data-mood="Confused"></div>
-      <div class="mood sad" data-mood="Sad"></div>
-    </div>
+    <label>Journal Text:</label>
+    <textarea name="journalText" required></textarea>
 
-    <input type="hidden" id="moodInput" name="emotion">
-
-    <!-- Description -->
-    <p class="subtitle">DESCRIPTION</p>
-    <textarea class="dark-textarea" name="journalText" placeholder="Type why you’re feeling this way…"></textarea>
-
-    <!-- Date -->
-    <p class="subtitle">DATE</p>
-    <input type="date" class="dark-box" name="date">
-
-    <br><br>
-    <button class="dark-box" style="cursor:pointer; width:100%;">Save Entry</button>
-  </form>
-</div>
-
-<script>
-  const moods = document.querySelectorAll(".mood");
-  const moodInput = document.getElementById("moodInput");
-
-  moods.forEach(m => {
-    m.addEventListener("click", () => {
-      moods.forEach(x => x.classList.remove("selected"));
-      m.classList.add("selected");
-      moodInput.value = m.dataset.mood;
-    });
-  });
-</script>
+    <button type="submit" class="add-entry">Save Entry</button>
+</form>

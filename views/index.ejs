@@ -1,24 +1,38 @@
-<div class="py-4 text-center">
-  <h1>Public Mood Log</h1>
-  <p class="lead">Recent public mood entries</p>
+<div class="card">
+    <h1>Welcome to Your Mood Journal 💖</h1>
+    <p>Select a mood from the board or add a new entry!</p>
 </div>
 
-<div class="row">
-  <% if (!entries || entries.length === 0) { %>
-    <div class="col-12"><p>No entries yet.</p></div>
-  <% } %>
+<div class="mood-board">
+    <div class="board-title">Mood Board:</div>
 
-  <% entries.forEach(entry => { %>
-    <div class="col-md-4 mb-3">
-      <div class="card shadow-sm h-100">
-        <div class="card-body">
-          <h5><%= entry.emotion %> — <%= entry.moodScore %>/5</h5>
-          <p><%= entry.journalText ? entry.journalText.substring(0,120) : '' %></p>
-        </div>
-        <div class="card-footer text-muted">
-          <%= new Date(entry.date).toLocaleDateString() %>
-        </div>
-      </div>
+    <div class="board-row">
+        <div class="board-item"><div class="icon confused"></div>Confused</div>
+        <div class="board-item"><div class="icon happy"></div>Happy</div>
+        <div class="board-item"><div class="icon stressed"></div>Stressed</div>
+        <div class="board-item"><div class="icon angry"></div>Angry</div>
+        <div class="board-item"><div class="icon sad"></div>Sad</div>
     </div>
-  <% }) %>
+</div>
+
+<a class="add-entry" href="/moods/add">➕ Add Entry</a>
+
+<div class="entries-panel">
+    <% if (!entries || entries.length === 0) { %>
+        <div>No entries yet.</div>
+    <% } %>
+
+    <% entries.forEach(entry => { %>
+        <div class="entry-row">
+            <div class="entry-icon <%= entry.mood %>"></div>
+
+            <div class="entry-content">
+                <div class="entry-date">
+                    <a href="/moods/<%= entry._id %>"><%= new Date(entry.date).toLocaleString() %></a>
+                </div>
+
+                <div class="entry-text"><%= entry.journalText %></div>
+            </div>
+        </div>
+    <% }) %>
 </div>

@@ -1,18 +1,17 @@
-// routes/moods.js
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const moodsController = require('../controllers/moodsController');
+const controller = require("../controllers/moodsController");
 
-// add new entry
-router.get('/add', moodsController.showAddForm);
-router.post('/add', moodsController.createEntry);
+// Home page
+router.get("/", controller.publicList);
 
-// edit entry
-router.get('/edit/:id', moodsController.showEditForm);
-router.put('/edit/:id', moodsController.updateEntry);
+// Add Entry page (GET)
+router.get("/add", controller.addEntryForm);
 
-// delete confirmation
-router.get('/delete/:id', moodsController.showDeleteConfirm);
-router.delete('/delete/:id', moodsController.deleteEntry);
+// Entries list page
+router.get("/entries", controller.entriesList);
+
+// Add Entry (POST)
+router.post("/add", controller.saveEntry);
 
 module.exports = router;

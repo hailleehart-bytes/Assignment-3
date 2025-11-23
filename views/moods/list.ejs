@@ -1,26 +1,28 @@
-<h1 class="section-title">Mood Board:</h1>
+<h2>Your Mood Entries</h2>
 
-<a href="/moods/add" class="add-entry-btn">
-  <span>+</span> Add Entry
-</a>
+<a class="add-entry" href="/moods/add">➕ Add Entry</a>
 
-<% moods.forEach(m => { %>
-  <div class="entry-card">
-    <div class="entry-grid">
-      
-      <!-- Mood Bubble -->
-      <div class="mood <%= m.emotion.toLowerCase() %>"></div>
+<div class="entries-panel">
 
-      <!-- Right Column -->
-      <div>
-        <div class="entry-date">
-          <%= new Date(m.date).toLocaleDateString("en-US", {
-            year: "numeric", month: "long", day: "numeric"
-          }) %>
+    <% if (entries.length === 0) { %>
+        <p>No entries yet.</p>
+    <% } %>
+
+    <% entries.forEach(entry => { %>
+        <div class="entry-row">
+            <div class="entry-icon <%= entry.mood %>"></div>
+
+            <div class="entry-content">
+                <div class="entry-date">
+                    <a href="/moods/<%= entry._id %>">
+                        <%= new Date(entry.date).toLocaleString() %>
+                    </a>
+                </div>
+
+                <div class="entry-text">
+                    <%= entry.journalText %>
+                </div>
+            </div>
         </div>
-
-        <p><%= m.journalText %></p>
-      </div>
-    </div>
-  </div>
-<% }) %>
+    <% }) %>
+</div>

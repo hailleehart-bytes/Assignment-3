@@ -1,103 +1,83 @@
 // controllers/moodsController.js
-const MoodEntry = require('../models/MoodEntry');
+const MoodEntry = require("../models/MoodEntry");
 
-// helper: require auth middleware-like behavior in routes
-exports.dashboard = async (req, res, next) => {
+// Home page showing latest entries
+exports.publicList = async (req, res) => {
   try {
-    if (!req.session.user) return res.redirect('/auth/login');
-    const entries = await MoodEntry.find({ userId: req.session.user.id }).sort({ date: -1 });
-    res.render('moods/list', { entries });
+    const entries = await MoodEntry.find().sort({ date: -1 }).lean();
+    res.render("moods/list", { title: "Mood Journal", entries });
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).send("Error loading entries");
   }
 };
 
-exports.publicList = async (req, res, next) => {
-  try {
-    // show all entries publicly (for assignment requirement)
-    const entries = await MoodEntry.find().sort({ date: -1 }).limit(50).populate('userId', 'username');
-    res.render('index', { entries });
-  } catch (err) {
-    next(err);
-  }
+// Show form to add a new entry
+exports.addEntryForm = (req, res) => {
+  res.render("moods/add", { title: "Add Entry" });
 };
 
-exports.showAddForm = (req, res) => {
-  if (!req.session.user) return res.redirect('/auth/login');
-  res.render('moods/add');
-};
-
-exports.createEntry = async (req, res, next) => {
+// Handle adding new entry
+exports.saveEntry = async (req, res) => {
   try {
-    if (!req.session.user) return res.redirect('/auth/login');
-    const { moodScore, emotion, journalText, date } = req.body;
-    const entry = new MoodEntry({
-      moodScore: Number(moodScore),
-      emotion,
+    const { mood, journalText } = req.body;
+
+    const newEntry = new MoodEntry({
+      mood,
       journalText,
-      date: date ? new Date(date) : undefined,
-      userId: req.session.user.id
+      date: new Date()
     });
-    await entry.save();
-    res.redirect('/dashboard');
+
+    await newEntry.save();
+    res.redirect("/moods");
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).send("Error saving entry");
   }
 };
 
-exports.showEditForm = async (req, res, next) => {
+// Show all entries
+exports.entriesList = async (req, res) => {
   try {
-    if (!req.session.user) return res.redirect('/auth/login');
-    const entry = await MoodEntry.findById(req.params.id);
-    if (!entry) return res.redirect('/dashboard');
-    // ensure ownership
-    if (entry.userId.toString() !== req.session.user.id) return res.status(403).send('Forbidden');
-    res.render('moods/edit', { entry });
+    const entries = await MoodEntry.find().sort({ date: -1 }).lean();
+    res.render("moods/list", { title: "All Entries", entries });
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).send("Error loading entries");
   }
 };
 
-exports.updateEntry = async (req, res, next) => {
+// Show form to edit an entry
+exports.editEntryForm = async (req, res) => {
   try {
-    if (!req.session.user) return res.redirect('/auth/login');
-    const entry = await MoodEntry.findById(req.params.id);
-    if (!entry) return res.redirect('/dashboard');
-    if (entry.userId.toString() !== req.session.user.id) return res.status(403).send('Forbidden');
-
-    entry.moodScore = Number(req.body.moodScore);
-    entry.emotion = req.body.emotion;
-    entry.journalText = req.body.journalText;
-    entry.date = req.body.date ? new Date(req.body.date) : entry.date;
-
-    await entry.save();
-    res.redirect('/dashboard');
+    const entry = await MoodEntry.findById(req.params.id).lean();
+    if (!entry) return res.status(404).send("Entry not found");
+    res.render("moods/edit", { title: "Edit Entry", entry });
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).send("Error loading entry");
   }
 };
 
-exports.showDeleteConfirm = async (req, res, next) => {
+// Handle deleting an entry (confirmation page)
+exports.deleteConfirm = async (req, res) => {
   try {
-    if (!req.session.user) return res.redirect('/auth/login');
-    const entry = await MoodEntry.findById(req.params.id);
-    if (!entry) return res.redirect('/dashboard');
-    if (entry.userId.toString() !== req.session.user.id) return res.status(403).send('Forbidden');
-    res.render('moods/delete_confirm', { entry });
+    const entry = await MoodEntry.findById(req.params.id).lean();
+    if (!entry) return res.status(404).send("Entry not found");
+    res.render("moods/delete_confirm", { title: "Delete Entry", entry });
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).send("Error loading entry");
   }
 };
 
-exports.deleteEntry = async (req, res, next) => {
+// Handle actual deletion
+exports.deleteEntry = async (req, res) => {
   try {
-    if (!req.session.user) return res.redirect('/auth/login');
-    const entry = await MoodEntry.findById(req.params.id);
-    if (!entry) return res.redirect('/dashboard');
-    if (entry.userId.toString() !== req.session.user.id) return res.status(403).send('Forbidden');
-    await entry.remove();
-    res.redirect('/dashboard');
+    await MoodEntry.findByIdAndDelete(req.params.id);
+    res.redirect("/moods");
   } catch (err) {
-    next(err);
+    console.error(err);
+    res.status(500).send("Error deleting entry");
   }
 };

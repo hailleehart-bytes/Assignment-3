@@ -1,19 +1,16 @@
-// config/db.js - connect to MongoDB using mongoose
-const mongoose = require('mongoose');
+// config/db.js - modern mongoose connection
+const mongoose = require("mongoose");
 
-const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/moodjournal';
+const mongoURI = process.env.MONGO_URI;
 
-mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+if (!mongoURI) {
+  console.error("❌ MONGO_URI missing from .env file");
+  process.exit(1);
+}
 
-mongoose.connection.on('connected', () => {
-  console.log('Mongoose connected to', mongoURI);
-});
-
-mongoose.connection.on('error', (err) => {
-  console.error('Mongoose connection error:', err);
-});
+mongoose
+  .connect(mongoURI)
+  .then(() => console.log("✅ Connected to MongoDB"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
 
 module.exports = mongoose;

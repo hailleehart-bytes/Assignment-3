@@ -7,14 +7,13 @@
 </head>
 <body>
 
-  <!-- Navbar with hamburger -->
+  <!-- Navbar -->
   <header>
     <nav class="navbar">
       <div class="nav-brand">
         <a href="/">Mood Journal 💖</a>
         <button class="nav-toggle" id="nav-toggle">&#9776;</button>
       </div>
-
       <ul class="nav-menu" id="nav-menu">
         <li><a href="/">Home</a></li>
         <li><a href="/dashboard">Dashboard</a></li>
@@ -34,11 +33,10 @@
     <p>&copy; 2025 Mood Journal</p>
   </footer>
 
-  <!-- Hamburger JS -->
+  <!-- Hamburger menu JS -->
   <script>
     const toggle = document.getElementById('nav-toggle');
     const menu = document.getElementById('nav-menu');
-
     toggle.addEventListener('click', () => {
       menu.classList.toggle('active');
     });

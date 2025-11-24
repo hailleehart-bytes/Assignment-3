@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 
 // Show login page
 exports.loginForm = (req, res) => {
-  res.render("auth/login", { title: "Login" });
+  res.render("auth/login", { title: "Login", error: null });
 };
 
 // Handle login
@@ -21,7 +21,7 @@ exports.login = async (req, res) => {
 
 // Show register page
 exports.registerForm = (req, res) => {
-  res.render("auth/register", { title: "Register" });
+  res.render("auth/register", { title: "Register", error: null });
 };
 
 // Handle registration

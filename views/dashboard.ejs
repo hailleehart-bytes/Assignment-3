@@ -1,8 +1,36 @@
-<div class="card">
-    <h1>Your Dashboard</h1>
+<div class="card dashboard-card">
+  <h1>Your Dashboard</h1>
 
-    <p>Welcome back, <%= user.username %>!</p>
+  <p>Welcome back, <%= currentUser.username %>!</p>
 
-    <p><a class="btn" href="/moods/add">Add New Mood Entry</a></p>
-    <p><a class="btn" href="/moods">View Mood History</a></p>
+  <div class="dashboard-actions">
+    <a class="btn" href="/moods/add">Add New Mood Entry</a>
+    <a class="btn" href="/moods">View Mood History</a>
+  </div>
+</div>
+
+
+  <h2>Your Mood History</h2>
+
+  <% if (entries.length === 0) { %>
+    <p>No entries yet.</p>
+  <% } else { %>
+    <div class="entries-section">
+      <% entries.forEach(entry => { %>
+        <div class="entry-card">
+          <div class="entry-left">
+            <img src="/images/<%= entry.mood %>.png" class="entry-mood-img">
+          </div>
+          <div class="entry-right">
+            <h4><%= entry.dateFormatted %></h4>
+            <p><%= entry.description %></p>
+            <div class="entry-actions">
+              <a href="/moods/edit/<%= entry._id %>">Edit</a> |
+              <a href="/moods/delete/<%= entry._id %>">Delete</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
 </div>

@@ -1,4 +1,4 @@
-# Mood Journal 💖
+# Mood Journal 
 
 Mood Journal is a web application that allows users to track their moods and entries over time. Users can register, log in, add new mood entries, view their mood history, and manage entries. The application is built with Node.js, Express, MongoDB, EJS templates, and CSS styling. The design incorporates Bootstrap for a professional look and feel.
 
@@ -83,38 +83,26 @@ mood-journal/
 ├─ package.json
 └─ README.md
 
-yaml
-Copy code
 
 ---
 
 ## Installation
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/mood-journal.git
+   git clone https://github.com/hailleehart-bytes/Assignment-3.git
 Navigate to the project folder:
 
-bash
-Copy code
-cd mood-journal
+
 Install dependencies:
-
-bash
-Copy code
 npm install
-Create a .env file in the root directory with the following:
 
-ini
-Copy code
+Create a .env file in the root directory with the following:
 MONGODB_URI=your_mongodb_connection_string
 SESSION_SECRET=your_secret_key
-Start the application:
 
-bash
-Copy code
+Start the application:
 npm start
-Open your browser at http://localhost:3000
+Open your browser at http://localhost:3001
 
 Usage
 Register a new account.
@@ -136,3 +124,15 @@ The dashboard and mood entry pages are styled to match a consistent theme.
 
 The project fulfills the assignment requirement of implementing a professional design using Bootstrap.
 
+
+
+
+## EXTERNAL SOURCES
+
+## got code from:....
+https://medium.com/swlh/building-a-simple-web-application-with-node-express-mongodb-dcd53231e83c    
+https://javascript.plainenglish.io/how-i-integrated-a-mongodb-database-into-my-react-js-project-6cdc331923d3
+https://mongodb.github.io/node-mongodb-native/api-articles/nodekoarticle1.html
+
+
+!uploaded a visual of what I wanted my site to look like, using Canva and ased ChatGPT to help style it in css to get my desired format!

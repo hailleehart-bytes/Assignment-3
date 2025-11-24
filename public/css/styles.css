@@ -1,228 +1,362 @@
-/* -----------------------------------------------------------
-   Global Theme Colors
------------------------------------------------------------ */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
-
-:root{
-  --bg-pink: #f7d9f2;
-  --card-navy: #0b2460;
-  --mint: #7fe0c2;
-  --accent-dark: #0a1940;
+:root {
+  --bg-pink: #f4c8ff;
+  --card-navy: #0b1a47;
+  --mint: #66c6b8;
+  --accent-dark: #0b1a47;
   --bubble-shadow: rgba(11,36,96,0.25);
 }
 
-*{ box-sizing:border-box; }
-
-body{
-  background: var(--bg-pink);
-  font-family: 'Playfair Display', serif;
-  margin:0;
-  color: var(--accent-dark);
+* {
+  box-sizing: border-box;
 }
 
-/* -----------------------------------------------------------
-   Container
------------------------------------------------------------ */
-.container{
+body {
+  background-color: var(--bg-pink);
+  font-family: 'Georgia', serif;
+  color: var(--accent-dark);
+  margin: 0;
+  padding: 20px 0;
+}
+
+.page-container {
   max-width: 980px;
-  margin: 20px auto;
-  padding: 0 16px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* -----------------------------------------------------------
-   Header
------------------------------------------------------------ */
-.header-brand{
-  text-align:center;
-  font-size:36px;
-  margin-top:6px;
-  margin-bottom:10px;
+/* --- Mood Board Container --- */
+.mood-board {
+  background: var(--bg-pink);
+  padding: 20px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(11, 36, 96, 0.2);
+}
+
+.mood-board h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 15px;
   color: var(--accent-dark);
 }
 
-/* -----------------------------------------------------------
-   Panels + Cards
------------------------------------------------------------ */
-.mood-board,
-.entries-panel{
-  background: var(--bg-pink);
-  padding:18px;
-  border-radius:20px;
-  margin-bottom:24px;
+.mood-icons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
 }
 
-/* -----------------------------------------------------------
-   Mood Board
------------------------------------------------------------ */
-.board-title{
-  font-size:28px;
-  margin-bottom:10px;
+.mood-item {
+  text-align: center;
+  font-size: 14px;
+  color: var(--accent-dark);
 }
 
-.board-row{
-  display:flex;
-  align-items:center;
-  gap:18px;
-  flex-wrap:wrap;
-}
-
-.board-item{
-  text-align:center;
-  width:90px;
-  font-size:18px;
-}
-
-.board-item .icon{
-  width:60px;
-  height:60px;
-  border-radius:50%;
-  margin:0 auto 6px;
+.mood-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
   box-shadow: 0 6px 12px var(--bubble-shadow);
+  object-fit: cover;
+  background: white;
 }
 
-/* Mood Colors */
-.icon.happy{
-  background: radial-gradient(circle at 30% 30%, #ffd86b, #ff8a00);
-}
-.icon.sad{
-  background: radial-gradient(circle at 30% 30%, #64c1ff, #0a2fff);
-}
-.icon.angry{
-  background: radial-gradient(circle at 20% 20%, #ff4b2b, #ffdd00);
-}
-.icon.stressed{
-  background: radial-gradient(circle at 40% 40%, #ff9fb3, #ff6e8a);
-}
-.icon.confused{
-  background: radial-gradient(circle at 40% 40%, #9af0d6, #ff9ee6);
+/* --- Add Entry Button --- */
+.add-entry-btn {
+  text-align: center;
+  margin-bottom: 24px;
 }
 
-/* -----------------------------------------------------------
-   Entry Rows
------------------------------------------------------------ */
-.entry-row{
-  display:flex;
-  gap:18px;
-  align-items:flex-start;
-  padding:16px;
-  border-radius:12px;
-  background: rgba(255,255,255,0.05);
-  margin-bottom:12px;
-}
-
-.entry-icon{
-  width:60px;
-  height:60px;
-  border-radius:50%;
-  flex-shrink:0;
-  box-shadow:0 6px 12px var(--bubble-shadow);
-}
-
-.entry-content{
-  flex:1;
-  padding-right:10px;
-  border-left: 2px dotted rgba(11,36,96,0.15);
-}
-
-.entry-date{
-  font-size:18px;
+.add-entry-btn a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 28px;
   color: var(--accent-dark);
-  text-decoration:underline;
-  margin-bottom:8px;
+  text-decoration: none;
+  font-weight: 700;
+  background: var(--mint);
+  padding: 10px 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(11,36,96,0.3);
+  transition: background-color 0.3s ease;
 }
 
-.entry-text{
-  font-size:18px;
-  line-height:1.5;
+.add-entry-btn a span {
+  font-size: 40px;
+  line-height: 1;
 }
 
-/* -----------------------------------------------------------
-   Add Entry button
------------------------------------------------------------ */
-.add-entry{
-  display:inline-flex;
-  gap:10px;
-  align-items:center;
-  font-size:26px;
-  color: var(--accent-dark);
-  margin:18px 0;
-  text-decoration:none;
+.add-entry-btn a:hover {
+  background: #4da99d;
+  color: white;
 }
 
-/* -----------------------------------------------------------
-   Add Entry Form
------------------------------------------------------------ */
-.form-panel{
+/* --- Entries Section --- */
+.entries-section {
   background: var(--bg-pink);
-  padding:24px;
-  width:420px;
-  margin:0 auto;
-  border-radius:22px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(11, 36, 96, 0.2);
 }
 
-.section-title{
-  font-size:26px;
+.entries-section h2 {
+  font-size: 30px;
+  margin-bottom: 6px;
+  color: var(--accent-dark);
+}
+
+.entries-subtitle {
+  font-size: 14px;
   color: var(--mint);
-  margin:10px 0;
+  font-weight: 700;
+  margin-bottom: 18px;
+  letter-spacing: 0.05em;
 }
 
-.input-block{
-  background: var(--card-navy);
-  padding:20px;
-  border-radius:20px;
-  color:white;
-  margin-bottom:18px;
+/* Entry card styles */
+.entry-card {
+  background: #f8d1ff;
+  padding: 18px;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  box-shadow: 0 4px 8px rgba(11,36,96,0.15);
 }
 
-.bubble-row{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-}
-
-.bubble{
-  width:46px;
-  height:46px;
-  border-radius:50%;
-  cursor:pointer;
+.entry-left img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
   box-shadow: 0 6px 12px var(--bubble-shadow);
-  border:3px solid rgba(255,255,255,0.12);
+  object-fit: cover;
 }
 
-/* Same bubble colors */
-.bubble.happy { background: radial-gradient(circle at 20% 20%, #ffd86b, #ff8a00); }
-.bubble.sad { background: radial-gradient(circle at 30% 30%, #64c1ff, #0a2fff); }
-.bubble.angry { background: radial-gradient(circle at 20% 20%, #ff4b2b, #ffdd00); }
-.bubble.stressed { background: radial-gradient(circle at 40% 40%, #ff9fb3, #ff6e8a); }
-.bubble.confused { background: radial-gradient(circle at 40% 40%, #9af0d6, #ff9ee6); }
-
-textarea{
-  width:100%;
-  height:120px;
-  padding:12px;
-  border-radius:12px;
-  border:2px solid var(--accent-dark);
-  resize:none;
-  font-family:inherit;
+.entry-right h4 {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+  color: var(--accent-dark);
+  font-weight: 600;
 }
 
-button{
-  width:100%;
+.entry-right p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--accent-dark);
+}
+
+/* --- Add Entry Form Container --- */
+.add-container {
+  width: 420px;
+  max-width: 90%;
+  margin: 40px auto 60px;
+  padding: 24px;
+  background: var(--bg-pink);
+  border-radius: 25px;
+  box-shadow: 0 4px 12px var(--bubble-shadow);
+  text-align: center;
+  font-family: 'Georgia', serif;
+}
+
+/* Add entry form title */
+.add-title {
+  font-size: 28px;
+  margin-bottom: 24px;
+  color: var(--accent-dark);
+  font-weight: 700;
+}
+
+/* Section labels for form */
+.section-label {
+  font-size: 18px;
+  color: var(--mint);
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-align: left;
+}
+
+/* Mood picker row */
+.mood-picker {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 16px;
+}
+
+/* Hide radio buttons */
+.mood-select input[type="radio"] {
+  display: none;
+}
+
+/* Mood images for radio */
+.mood-select-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 6px 12px var(--bubble-shadow);
+  transition: transform 0.2s ease, border-color 0.3s ease;
+  border: 3px solid transparent;
+  object-fit: cover;
+}
+
+/* Scale and border highlight on selected */
+.mood-select input[type="radio"]:checked + .mood-select-img {
+  transform: scale(1.1);
+  border-color: var(--mint);
+}
+
+/* Textarea & date input */
+textarea,
+input[type="date"] {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 2px solid var(--card-navy);
+  font-size: 16px;
+  resize: none;
+  font-family: 'Georgia', serif;
+  color: var(--accent-dark);
+  background-color: #ffffffcc;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+/* Submit button */
+button.submit-btn {
+  width: 100%;
   background: var(--card-navy);
-  color:white;
-  padding:14px;
-  font-size:20px;
-  border-radius:12px;
-  cursor:pointer;
-  border:none;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 14px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* -----------------------------------------------------------
-   Responsive
------------------------------------------------------------ */
-@media(max-width:768px){
-  .form-panel{
-    width:96%;
-    padding:18px;
+button.submit-btn:hover {
+  background-color: #09163a;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .mood-icons {
+    gap: 20px;
+  }
+
+  .mood-img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .entry-card {
+  background: #f8d1ff;
+  padding: 18px;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  box-shadow: 0 4px 8px rgba(11,36,96,0.15);
+  /* Add this for the line between image and text */
+  border-left: 4px solid var(--mint); /* or any color you prefer */
+}
+
+/* Add a right border to the image container */
+.entry-left {
+  padding-right: 20px;
+  border-right: 2px solid var(--mint);
+  margin-right: 16px;
+}
+
+/* Optionally adjust entry-right so text doesn't stick too close */
+.entry-right {
+  padding-left: 16px;
+}
+
+
+  .entry-left img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .entry-actions a {
+  margin-right: 10px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+  .add-container {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .mood-select-img {
+    width: 50px;
+    height: 50px;
   }
 }
+
+/* Navbar base */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #111;
+  padding: 10px 20px;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 12px;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+}
+
+.nav-toggle {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .nav-menu {
+    flex-direction: column;
+    display: none; /* hidden by default */
+    width: 100%;
+    background-color: #111;
+    position: absolute;
+    top: 60px;
+    left: 0;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+}
+
+

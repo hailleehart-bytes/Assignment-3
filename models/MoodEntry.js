@@ -10,7 +10,7 @@ const MoodEntrySchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  note: {
+  description: { // changed from 'note' to 'description'
     type: String,
     default: ""
   },

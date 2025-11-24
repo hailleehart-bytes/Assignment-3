@@ -1,18 +1,29 @@
-<h2>Add New Mood Entry</h2>
+<div class="add-container">
 
-<form action="/moods/add" method="POST" class="card">
+  <h1 class="add-title">New Mood Entry</h1>
 
-    <label>Select Mood:</label>
-    <select name="mood" required>
-        <option value="confused">Confused</option>
-        <option value="happy">Happy</option>
-        <option value="stressed">Stressed</option>
-        <option value="angry">Angry</option>
-        <option value="sad">Sad</option>
-    </select>
+  <form action="/moods/add" method="POST" class="add-form">
 
-    <label>Journal Text:</label>
-    <textarea name="journalText" required></textarea>
+    <!-- Mood Picker -->
+    <label class="section-label">CHOOSE YOUR MOOD</label>
+    <div class="mood-picker">
+      <% ["confused","angry","stressed","happy","sad"].forEach(m => { %>
+        <label class="mood-select">
+          <input type="radio" name="mood" value="<%= m %>">
+          <img src="/images/<%= m %>.png" class="mood-select-img">
+        </label>
+      <% }) %>
+    </div>
 
-    <button type="submit" class="add-entry">Save Entry</button>
-</form>
+    <!-- Description -->
+    <label class="section-label">DESCRIPTION</label>
+    <textarea class="input-box" name="description" placeholder="Type why you're feeling this way......"></textarea>
+
+    <!-- Date -->
+    <label class="section-label">DATE</label>
+    <input class="input-box" type="date" name="date">
+
+    <button class="submit-btn">Save Entry</button>
+  </form>
+
+</div>

@@ -1,54 +1,41 @@
-// controllers/authController.js
-const User = require('../models/User');
+const User = require("../models/User");
+const bcrypt = require("bcrypt");
 
-exports.showRegister = (req, res) => {
-  res.render('register');
+// Show login page
+exports.loginForm = (req, res) => {
+  res.render("auth/login", { title: "Login" });
 };
 
-exports.register = async (req, res, next) => {
-  try {
-    const { username, password } = req.body;
-    // basic validation
-    if (!username || !password) {
-      return res.render('register', { error: 'Username and password required.' });
-    }
-    const existing = await User.findOne({ username });
-    if (existing) {
-      return res.render('register', { error: 'Username already taken.' });
-    }
-    const user = new User({ username, password });
-    await user.save();
-    // set session
-    req.session.user = { id: user._id, username: user.username };
-    res.redirect('/dashboard');
-  } catch (err) {
-    next(err);
-  }
+// Handle login
+exports.login = async (req, res) => {
+  const { username, password } = req.body;
+  const user = await User.findOne({ username });
+  if (!user) return res.render("auth/login", { title: "Login", error: "Invalid username or password" });
+
+  const match = await bcrypt.compare(password, user.password);
+  if (!match) return res.render("auth/login", { title: "Login", error: "Invalid username or password" });
+
+  req.session.user = user;
+  res.redirect("/dashboard");
 };
 
-exports.showLogin = (req, res) => {
-  res.render('login');
+// Show register page
+exports.registerForm = (req, res) => {
+  res.render("auth/register", { title: "Register" });
 };
 
-exports.login = async (req, res, next) => {
-  try {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
-    if (!user) return res.render('login', { error: 'Invalid credentials.' });
-
-    const ok = await user.comparePassword(password);
-    if (!ok) return res.render('login', { error: 'Invalid credentials.' });
-
-    req.session.user = { id: user._id, username: user.username };
-    res.redirect('/dashboard');
-  } catch (err) {
-    next(err);
-  }
+// Handle registration
+exports.register = async (req, res) => {
+  const { username, password } = req.body;
+  const hash = await bcrypt.hash(password, 10);
+  const user = new User({ username, password: hash });
+  await user.save();
+  req.session.user = user;
+  res.redirect("/dashboard");
 };
 
-exports.logout = (req, res, next) => {
-  req.session.destroy(err => {
-    if (err) return next(err);
-    res.redirect('/');
-  });
+// Handle logout
+exports.logout = (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
 };

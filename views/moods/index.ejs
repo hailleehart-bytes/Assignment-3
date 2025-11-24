@@ -6,12 +6,26 @@
   <section class="mood-board">
     <h2>Mood Board:</h2>
     <div class="mood-icons">
-      <% ["confused","happy","stressed","angry","sad"].forEach(mood => { %>
-        <div class="mood-item">
-          <img src="/images/<%= mood %>.png" class="mood-img">
-          <p><%= mood.charAt(0).toUpperCase() + mood.slice(1) %></p>
-        </div>
-      <% }) %>
+      <div class="mood-item">
+        <img src="/images/confused.png" class="mood-img">
+        <p>Confused</p>
+      </div>
+      <div class="mood-item">
+        <img src="/images/happy.png" class="mood-img">
+        <p>Happy</p>
+      </div>
+      <div class="mood-item">
+        <img src="/images/stressed.png" class="mood-img">
+        <p>Stressed</p>
+      </div>
+      <div class="mood-item">
+        <img src="/images/angry.png" class="mood-img">
+        <p>Angry</p>
+      </div>
+      <div class="mood-item">
+        <img src="/images/sad.png" class="mood-img">
+        <p>Sad</p>
+      </div>
     </div>
   </section>
 
@@ -22,7 +36,7 @@
 
   <!-- Entries Section -->
   <section class="entries-section">
-    <h2>Mood Entries</h2>
+    <h2>Mood</h2>
     <h3 class="entries-subtitle">WHY ARE YOU FEELING THIS WAY?</h3>
 
     <% if (moods.length === 0) { %>
@@ -38,12 +52,6 @@
         <div class="entry-right">
           <h4><%= m.dateFormatted %></h4>
           <p><%= m.description %></p>
-
-          <!-- CRUD buttons -->
-          <div class="entry-actions">
-            <a href="/moods/edit/<%= m._id %>">Edit</a> |
-            <a href="/moods/delete/<%= m._id %>">Delete</a>
-          </div>
         </div>
       </div>
     <% }) %>

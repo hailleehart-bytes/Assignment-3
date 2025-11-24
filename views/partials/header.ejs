@@ -1,13 +1,30 @@
-<%- layout('layouts/main') %>
-<header>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/dashboard">Dashboard</a>
-        <a href="/moods">Mood Entries</a>
-        <a href="/moods/add">Add Entry</a>
+<header class="navbar">
+    <nav class="nav-container">
+        <div class="nav-left">
+            <a class="brand" href="/">Mood Journal 💖</a>
+            <button class="nav-toggle" id="nav-toggle">&#9776;</button>
+        </div>
 
-        <% if (user) { %>
-            <span style="float:right;">Hello, <%= user.username %>!</span>
-        <% } %>
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="/">Home</a></li>
+            <% if (currentUser) { %>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/moods">My Entries</a></li>
+                <li><a href="/moods/add">Add Entry</a></li>
+                <li><a href="/auth/logout">Logout</a></li>
+                <li><span>Hello, <%= currentUser.username %>!</span></li>
+            <% } else { %>
+                <li><a href="/auth/login">Login</a></li>
+                <li><a href="/auth/register">Register</a></li>
+            <% } %>
+        </ul>
     </nav>
 </header>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('nav-menu');
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('active');
+  });
+</script>

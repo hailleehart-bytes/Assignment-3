@@ -1,32 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title><%= title || "Mood Journal" %></title>
-
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <title><%= title || "Mood Journal" %></title>
+  <link rel="stylesheet" href="/css/styles.css">
 </head>
-
 <body>
 
-<header>
-    <h1>Mood Journal 💖</h1>
+  <!-- Navbar with hamburger -->
+  <header>
+    <nav class="navbar">
+      <div class="nav-brand">
+        <a href="/">Mood Journal 💖</a>
+        <button class="nav-toggle" id="nav-toggle">&#9776;</button>
+      </div>
 
-    <nav>
-        <a href="/">Home</a>
-        <a href="/moods">Entries</a>
-        <a href="/moods/add">Add Entry</a>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/moods">Mood Entries</a></li>
+        <li><a href="/moods/add">Add Entry</a></li>
+      </ul>
     </nav>
-</header>
+  </header>
 
-<div class="content">
-    <!-- This is where each EJS page is inserted -->
+  <!-- Page content -->
+  <div class="content">
     <%- body %>
-</div>
+  </div>
 
-<footer>
+  <!-- Footer -->
+  <footer>
     <p>&copy; 2025 Mood Journal</p>
-</footer>
+  </footer>
+
+  <!-- Hamburger JS -->
+  <script>
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('nav-menu');
+
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+  </script>
 
 </body>
 </html>
